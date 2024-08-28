@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/table";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
+
+export const revalidate = 5;
 
 async function getUsers() {
   try {
@@ -26,6 +29,7 @@ async function getUsers() {
 }
 
 export default async function UsersPage() {
+  noStore();
   const users = await getUsers();
 
   return (
