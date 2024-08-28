@@ -14,6 +14,7 @@ import {
   page4Schema,
   userSchema,
 } from "@/validation/user";
+import { revalidatePath } from "next/cache";
 
 export default function Multiform() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -118,6 +119,8 @@ export default function Multiform() {
           </>
         ),
       });
+
+      revalidatePath("/registered");
     }
   };
 
